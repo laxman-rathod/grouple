@@ -4,6 +4,8 @@ import { ClerkProvider } from "@clerk/nextjs"
 // import { ReduxProvider } from "@/redux/provider"
 import { ReactQueryProvider } from "@/react-query/provider"
 import "./globals.css"
+// import { ReduxProvider } from "@/redux/provider"
+import { ThemeProvider } from "@/components/theme/Index"
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
@@ -22,11 +24,15 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={`${jakarta.className} bg-black`}>
-          {/* <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange> */}
-          {/* <ReduxProvider> */}
-          <ReactQueryProvider>{children}</ReactQueryProvider>
-          {/* </ReduxProvider> */}
-          {/* </ThemeProvider> */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            disableTransitionOnChange
+          >
+            {/* <ReduxProvider> */}
+            <ReactQueryProvider>{children}</ReactQueryProvider>
+            {/* </ReduxProvider> */}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
