@@ -3,9 +3,10 @@ import { Plus_Jakarta_Sans } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 // import { ReduxProvider } from "@/redux/provider"
 import { ReactQueryProvider } from "@/react-query/provider"
-import "./globals.css"
 // import { ReduxProvider } from "@/redux/provider"
 import { ThemeProvider } from "@/components/theme/Index"
+import { Toaster } from "sonner"
+import "./globals.css"
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
@@ -32,6 +33,7 @@ export default function RootLayout({
             {/* <ReduxProvider> */}
             <ReactQueryProvider>{children}</ReactQueryProvider>
             {/* </ReduxProvider> */}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>
