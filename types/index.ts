@@ -1,3 +1,5 @@
+import React from "react"
+
 export interface IGroupInfo {
   status: number
   group:
@@ -54,3 +56,14 @@ export interface SideBarMenuProps {
   groupUserId: string
   userId: string
 }
+
+export interface IconDropDownProps {
+  icon: string
+  ref: React.RefObject<HTMLButtonElement>
+  page?: string
+  channelId: string
+  currentIcon?: string
+  onSetIcon(icon: string): void
+}
+
+
