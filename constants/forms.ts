@@ -1,3 +1,5 @@
+import { v4 } from "uuid"
+
 export type AuthFormProps = {
   id: string
   type: "email" | "text" | "password"
@@ -9,28 +11,28 @@ export type AuthFormProps = {
 }
 export const SIGN_UP_FORM: AuthFormProps[] = [
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     inputType: "input",
     placeholder: "First name",
     name: "firstname",
     type: "text",
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     inputType: "input",
     placeholder: "Last name",
     name: "lastname",
     type: "text",
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     inputType: "input",
     placeholder: "Email",
     name: "email",
     type: "email",
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     inputType: "input",
     placeholder: "Password",
     name: "password",
@@ -40,14 +42,14 @@ export const SIGN_UP_FORM: AuthFormProps[] = [
 
 export const SIGN_IN_FORM: AuthFormProps[] = [
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     inputType: "input",
     placeholder: "Email",
     name: "email",
     type: "email",
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     inputType: "input",
     placeholder: "Password",
     name: "password",

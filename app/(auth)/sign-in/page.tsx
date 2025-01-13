@@ -1,7 +1,6 @@
 import SignInForm from "@/components/forms/sign-in/Index"
 import { GoogleAuthButton } from "@/components/global/google-oauth-button/Index"
 import { Separator } from "@/components/ui/separator"
-// WIP: callback
 
 const SignInPage = () => {
   return (

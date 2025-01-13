@@ -4,10 +4,14 @@ import { redirect } from "next/navigation"
 
 const CompleteSignIn = async () => {
   const user = await currentUser()
-  if (!user) return redirect("/sign-in")
+  if (!user || !user.id) {
+    return redirect("/sign-in")
+  }
 
   const authenticated = await onSignInUser(user.id)
-  if (authenticated.status === 200) redirect("/group/create")
+  if (authenticated.status === 200) {
+    redirect("/group/create")
+  }
 
   if (authenticated.status === 207)
     return redirect(

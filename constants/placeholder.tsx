@@ -8,6 +8,7 @@ import {
   WhiteLabel,
 } from "@/icons"
 import { JSX } from "react"
+import { v4 } from "uuid"
 
 export type CreateGroupPlaceholderProps = {
   id: string
@@ -17,37 +18,37 @@ export type CreateGroupPlaceholderProps = {
 
 export const CREATE_GROUP_PLACEHOLDER: CreateGroupPlaceholderProps[] = [
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     label: "Highly engaging",
     icon: <MegaPhone />,
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     label: "Easy to setup",
     icon: <Heart />,
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     label: "Group chat and posts",
     icon: <Chat />,
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     label: "Students can create teams within Groups",
     icon: <Grid />,
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     label: "Gamification",
     icon: <Document />,
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     label: "Host unlimited courses",
     icon: <Courses />,
   },
   {
-    id: `${Math.random() * 1000}`,
+    id: v4(),
     label: "White-labeling options",
     icon: <WhiteLabel />,
   },

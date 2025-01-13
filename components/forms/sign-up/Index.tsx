@@ -49,12 +49,13 @@ const SignUpForm = () => {
       )}
 
       {verifying ? (
-        <Button type="submit" className="rounded-2xl">
+        <Button type="submit" className="rounded-2xl" disabled={creating}>
           <Loader loading={creating}>Sign Up with Email</Loader>
         </Button>
       ) : (
         <Button
           type="button"
+          disabled={creating}
           className="rounded-2xl"
           onClick={() =>
             onGenerateCode(getValues("email"), getValues("password"))
