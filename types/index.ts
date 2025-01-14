@@ -66,4 +66,11 @@ export interface IconDropDownProps {
   onSetIcon(icon: string): void
 }
 
-
+export interface SearchProps {
+  className?: string
+  inputStyle?: string
+  placeholder?: string
+  searchType: "GROUPS" | "POSTS"
+  iconStyle?: string
+  glass?: boolean
+}
