@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { GROUPLE_CONSTANTS } from "@/constants"
+import { GROUPLE_CONSTANTS } from "@/constants/groups"
 import { useNavigation } from "@/hooks/navigation"
 import { cn } from "@/lib/utils"
 import Link from "next/link"

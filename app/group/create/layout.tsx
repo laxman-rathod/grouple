@@ -1,7 +1,7 @@
 import BackdropGradient from "@/components/global/backdrop-gradient/Index"
 import GlassCard from "@/components/global/glass-card/Index"
 import GradientText from "@/components/global/gradient-text/Index"
-import { GROUPLE_CONSTANTS } from "@/constants"
+import { GROUPLE_CONSTANTS } from "@/constants/groups"
 
 type CreateGroupLayoutProps = {
   children: React.ReactNode

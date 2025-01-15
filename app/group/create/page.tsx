@@ -5,11 +5,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { User } from "lucide-react"
 import { redirect } from "next/navigation"
 
-interface Params {
+type Props = Promise<{
   searchParams: { [affiliate: string]: string }
-}
+}>
 
-const GroupCreatePage = async ({ searchParams }: Params) => {
+const GroupCreatePage = async ({ params }: { params: Props }) => {
+  const { searchParams } = await params
   const user = await onAuthenticatedUser()
   const affiliate = await onGetAffiliateInfo(searchParams.affiliate)
 

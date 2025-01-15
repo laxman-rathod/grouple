@@ -5,6 +5,8 @@ import prisma from "@/lib/prisma"
 import { z } from "zod"
 import { v4 as uuidv4 } from "uuid"
 import { onAuthenticatedUser } from "./auth.actions"
+import { revalidatePath } from "next/cache"
+import { GroupSettingsTypes } from "@/constants/groups"
 
 export const onGetAffiliateInfo = async (id: string) => {
   try {
@@ -310,6 +312,67 @@ export const onSearchGroups = async (
     return {
       status: 400,
       message: error.message || "Failed to search groups",
+    }
+  }
+}
+
+export const onUpdateGroupSettings = async (
+  groupId: string,
+  type: GroupSettingsTypes,
+  content: string,
+  path: string,
+) => {
+  const validTypes = [
+    "IMAGE",
+    "ICON",
+    "NAME",
+    "DESCRIPTION",
+    "JSONDESCRIPTION",
+    "HTMLDESCRIPTION",
+  ]
+
+  if (!validTypes.includes(type)) {
+    return {
+      status: 400,
+      message: "Invalid type",
+    }
+  }
+
+  const getKey = (type: string): string => {
+    switch (type) {
+      case "IMAGE":
+        return "thumbnail"
+      case "HTMLDESCRIPTION":
+        return "htmlDescription"
+      case "JSONDESCRIPTION":
+        return "jsonDescription"
+      default:
+        return type.toLowerCase()
+    }
+  }
+
+  const data = {
+    [getKey(type)]: content,
+  }
+
+  try {
+    const updatedGroup = await prisma.group.update({
+      where: { id: groupId },
+      data,
+    })
+
+    if (updatedGroup) {
+      revalidatePath(path)
+      return {
+        status: 200,
+        message: "Group settings updated successfully",
+      }
+    }
+    return { status: 404, message: "Group not found" }
+  } catch (error: any) {
+    return {
+      status: 400,
+      message: error.message || "Failed to update group settings",
     }
   }
 }

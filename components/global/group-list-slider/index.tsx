@@ -1,7 +1,7 @@
 import { UseFormRegister } from "react-hook-form"
 import { SwiperProps, SwiperSlide } from "swiper/react"
 import Slider from "../slider"
-import { GROUPLE_CONSTANTS } from "@/constants"
+import { GROUPLE_CONSTANTS } from "@/constants/groups"
 import Link from "next/link"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
