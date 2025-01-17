@@ -59,7 +59,7 @@ export interface SideBarMenuProps {
 
 export interface IconDropDownProps {
   icon: string
-  ref: React.RefObject<HTMLButtonElement>
+  ref: React.RefObject<HTMLButtonElement | null>
   page?: string
   channelId: string
   currentIcon?: string
@@ -73,4 +73,18 @@ export interface SearchProps {
   searchType: "GROUPS" | "POSTS"
   iconStyle?: string
   glass?: boolean
+}
+
+export type GroupStateProps = {
+  id: string
+  name: string
+  category: string
+  createdAt: Date
+  htmlDescription: string | null
+  userId: string
+  thumbnail: string | null
+  description: string | null
+  privacy: "PUBLIC" | "PRIVATE"
+  jsonDescription: string | null
+  gallery: string[]
 }

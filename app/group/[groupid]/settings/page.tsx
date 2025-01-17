@@ -1,5 +1,4 @@
 import GroupSettingsForm from "@/components/forms/group-settings"
-import { Group } from "lucide-react"
 
 const GroupSettingsPage = ({ params }: { params: { groupid: string } }) => {
   return (
@@ -11,7 +10,7 @@ const GroupSettingsPage = ({ params }: { params: { groupid: string } }) => {
           reflect on the explore page.
         </p>
       </div>
-      <GroupSettingsForm></GroupSettingsForm>
+      <GroupSettingsForm groupId={params.groupid} />
     </div>
   )
 }
