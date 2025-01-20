@@ -1,15 +1,15 @@
 "use client"
 
-import { FormGenerator } from "@/components/global/form-generator/Index"
-import { Loader } from "@/components/global/loader/Index"
+import { FormGenerator } from "@/components/global/form-generator"
+import { Loader } from "@/components/global/loader"
 import { Button } from "@/components/ui/button"
-import { GROUPLE_CONSTANTS } from "@/constants"
+import { GROUPLE_CONSTANTS } from "@/constants/groups"
 import { useAuthSignUp } from "@/hooks/auth"
 import dynamic from "next/dynamic"
 
 const OtpInput = dynamic(
   () =>
-    import("@/components/global/otp-input/Index").then(
+    import("@/components/global/otp-input").then(
       (component) => component.default,
     ),
   { ssr: false },

@@ -1,5 +1,5 @@
-import SignUpForm from "@/components/forms/sign-up/Index"
-import { GoogleAuthButton } from "@/components/global/google-oauth-button/Index"
+import SignUpForm from "@/components/forms/sign-up"
+import { GoogleAuthButton } from "@/components/global/google-oauth-button"
 import { Separator } from "@/components/ui/separator"
 
 const SignUpPage = () => {

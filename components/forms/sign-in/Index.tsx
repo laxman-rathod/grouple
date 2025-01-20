@@ -1,9 +1,9 @@
 "use client"
 
-import { FormGenerator } from "@/components/global/form-generator/Index"
-import { Loader } from "@/components/global/loader/Index"
+import { FormGenerator } from "@/components/global/form-generator"
+import { Loader } from "@/components/global/loader"
 import { Button } from "@/components/ui/button"
-import { GROUPLE_CONSTANTS } from "@/constants"
+import { GROUPLE_CONSTANTS } from "@/constants/groups"
 import { useAuthSignIn } from "@/hooks/auth/index"
 
 const SignInForm = () => {

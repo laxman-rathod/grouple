@@ -1,6 +1,6 @@
 import { onAuthenticatedUser } from "@/actions/auth.actions"
-import BackdropGradient from "@/components/global/backdrop-gradient/Index"
-import GlassCard from "@/components/global/glass-card/Index"
+import BackdropGradient from "@/components/global/backdrop-gradient"
+import GlassCard from "@/components/global/glass-card"
 import { redirect } from "next/navigation"
 
 interface Props {
