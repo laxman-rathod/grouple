@@ -10,7 +10,7 @@ const CompleteSignIn = async () => {
 
   const authenticated = await onSignInUser(user.id)
   if (authenticated.status === 200) {
-    redirect("/group/create")
+    return redirect("/group/create")
   }
 
   if (authenticated.status === 207)
