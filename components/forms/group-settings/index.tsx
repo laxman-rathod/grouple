@@ -1,8 +1,8 @@
 "use client"
 
 import GroupCard from "@/app/(discover)/explore/_components/group-card"
-import { FormGenerator } from "@/components/global/form-generator/Index"
-import { Loader } from "@/components/global/loader/Index"
+import { FormGenerator } from "@/components/global/form-generator"
+import { Loader } from "@/components/global/loader"
 import BlockTextEditor from "@/components/global/rich-text-editor"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"

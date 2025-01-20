@@ -1,6 +1,6 @@
-import BackdropGradient from "@/components/global/backdrop-gradient/Index"
-import GlassCard from "@/components/global/glass-card/Index"
-import GradientText from "@/components/global/gradient-text/Index"
+import BackdropGradient from "@/components/global/backdrop-gradient"
+import GlassCard from "@/components/global/glass-card"
+import GradientText from "@/components/global/gradient-text"
 import { GROUPLE_CONSTANTS } from "@/constants/groups"
 
 type CreateGroupLayoutProps = {

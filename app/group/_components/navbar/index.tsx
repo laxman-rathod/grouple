@@ -1,4 +1,4 @@
-import GlassSheet from "@/components/global/glass-sheet/Index"
+import GlassSheet from "@/components/global/glass-sheet"
 import Search from "@/components/global/search"
 import SideBar from "@/components/global/sidebar"
 import { UserWidget } from "@/components/global/user-widget"
