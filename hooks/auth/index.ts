@@ -110,10 +110,9 @@ export const useAuthSignUp = () => {
       }
     } catch (error: any) {
       console.error(JSON.stringify(error, null, 2))
-      if (error.errors[0].code === "form_password_incorrect")
-        toast("Error", {
-          description: "Incorrect email or password, try again.",
-        })
+      toast("Error", {
+        description: error.message || "Incorrect email or password, try again.",
+      })
     }
   }
 
@@ -130,7 +129,7 @@ export const useAuthSignUp = () => {
       })
 
       if (completeSignUp.status !== "complete") {
-        setCreating(false)
+        // setCreating(false) FIX: this is not working
         return toast("Error", {
           description: "Oops! something went wrong, status in complete",
         })
@@ -167,15 +166,7 @@ export const useAuthSignUp = () => {
       }
     } catch (error: any) {
       console.error(JSON.stringify(error, null, 2))
-      if (error.errors[0].code === "form_password_incorrect")
-        toast("Error", {
-          description: "Incorrect email or password, try again.",
-        })
-      else if (error.errors[0].code === "form_email_already_in_use")
-        toast("Error", {
-          description: "Email already in use, try again.",
-        })
-      else toast("Error", { description: error.message })
+      toast("Error", { description: error.message })
     }
   })
 
@@ -198,7 +189,6 @@ export const useGoogleAuth = () => {
 
   const signInWith = (strategy: OAuthStrategy) => {
     if (!LoadedSignIn) return
-
     try {
       return signIn.authenticateWithRedirect({
         strategy,
@@ -206,23 +196,26 @@ export const useGoogleAuth = () => {
         redirectUrlComplete: "/callback/sign-in",
       })
     } catch (error: any) {
-      console.error(JSON.stringify(error, null, 2))
+      console.error(error)
+      toast("Error", {
+        description: error.message || "Oops! something went wrong",
+      })
     }
   }
 
   const signUpWith = (strategy: OAuthStrategy) => {
     if (!LoadedSignUp) return
-
     try {
       return signUp.authenticateWithRedirect({
         strategy,
         redirectUrl: "/callback",
         redirectUrlComplete: "/callback/complete",
       })
-    } catch (error) {
-      console.error(JSON.stringify(error, null, 2))
+    } catch (error: any) {
+      console.error(error)
+      toast("Error", { description: "Oops! something went wrong" })
     }
   }
 
-  return { signInWith, signUpWith }
+  return { signUpWith, signInWith }
 }

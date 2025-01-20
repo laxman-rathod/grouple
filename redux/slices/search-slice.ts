@@ -1,10 +1,10 @@
-import { GroupStateProps } from "@/types"
+import { DataStateProps } from "@/types"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 interface InitialStatePops {
   isSearching?: boolean
   status?: number | undefined
-  data: GroupStateProps[]
+  data: DataStateProps[]
   debounce?: string
 }
 

@@ -1,5 +1,3 @@
-import React from "react"
-
 export interface IGroupInfo {
   status: number
   group:
@@ -75,16 +73,72 @@ export interface SearchProps {
   glass?: boolean
 }
 
-export type GroupStateProps = {
-  id: string
-  name: string
-  category: string
-  createdAt: Date
-  htmlDescription: string | null
-  userId: string
-  thumbnail: string | null
-  description: string | null
-  privacy: "PUBLIC" | "PRIVATE"
-  jsonDescription: string | null
-  gallery: string[]
+export type DataStateProps =
+  | {
+      id: string
+      name: string
+      category: string
+      createdAt: Date
+      htmlDescription: string | null
+      userId: string
+      thumbnail: string | null
+      description: string | null
+      privacy: "PUBLIC" | "PRIVATE"
+      jsonDescription: string | null
+      gallery: string[]
+    }
+  | {
+      id: string
+      createdAt: Date
+      title: string | null
+      htmlContent: string | null
+      jsonContent: string | null
+      content: string
+      authorId: string
+      channelId: string
+    }
+  | {
+      id: string
+      name: string
+      icon: string
+      createdAt: Date
+      groupId: string | null
+    }
+
+export type GroupDropDownProps = {
+  members?: {
+    Group: {
+      channel: {
+        id: string
+      }[]
+      id: string
+      name: string
+      icon: string | null
+    } | null
+  }[]
+  groups:
+    | {
+        status: number
+        groups: {
+          channel: {
+            id: string
+          }[]
+          id: string
+          name: string
+          icon: string | null
+        }[]
+      }
+    | {
+        status: number
+        groups?: undefined
+      }
+}
+
+export type InfiniteScrollObserverProps = {
+  children: React.ReactNode
+  action: "GROUPS" | "POSTS"
+  identifier: string
+  paginate: number
+  search?: boolean
+  loading?: "POST"
 }

@@ -262,57 +262,61 @@ export const onGetAllGroupMembers = async (groupId: string) => {
   }
 }
 
-export const onSearchGroups = async (
-  mode: "GROUPS" | "POSTS",
+export const onSearchQueries = async (
+  mode: "GROUPS" | "POSTS" | "CHANNELS",
   query: string,
-  paginate?: number,
+  paginate: number = 0,
 ) => {
   try {
-    if (mode === "GROUPS") {
-      const fetchedGroups = await prisma.group.findMany({
-        where: { name: { contains: query, mode: "insensitive" } },
-        take: 6,
-        skip: paginate || 0,
-      })
+    let result
+    let message
 
-      if (fetchedGroups && fetchedGroups.length > 0) {
+    switch (mode) {
+      case "GROUPS":
+        result = await prisma.group.findMany({
+          where: { name: { contains: query, mode: "insensitive" } },
+          take: 6,
+          skip: paginate,
+        })
+        message = result.length > 0 ? "Groups found" : "Groups not found"
         return {
-          status: 200,
-          message: "Groups found",
-          groups: fetchedGroups,
+          status: result.length > 0 ? 200 : 404,
+          message,
+          groups: result,
         }
-      }
 
-      return { status: 404, message: "Group not found" }
-    }
+      case "POSTS":
+        result = await prisma.post.findMany({
+          where: {
+            OR: [
+              { title: { contains: query, mode: "insensitive" } },
+              { content: { contains: query, mode: "insensitive" } },
+            ],
+          },
+          take: 6,
+          skip: paginate,
+        })
+        message = result.length > 0 ? "Posts found" : "Posts not found"
+        return { status: result.length > 0 ? 200 : 404, message, posts: result }
 
-    if (mode === "POSTS") {
-      const fetchedPosts = await prisma.post.findMany({
-        where: {
-          OR: [
-            { title: { contains: query, mode: "insensitive" } },
-            { content: { contains: query, mode: "insensitive" } },
-          ],
-        },
-        take: 6,
-        skip: paginate || 0,
-      })
-
-      if (fetchedPosts && fetchedPosts.length > 0) {
+      case "CHANNELS":
+        result = await prisma.channel.findMany({
+          where: { name: { contains: query, mode: "insensitive" } },
+          take: 6,
+          skip: paginate,
+        })
+        message = result.length > 0 ? "Channels found" : "Channels not found"
         return {
-          status: 200,
-          message: "Posts found",
-          posts: fetchedPosts,
+          status: result.length > 0 ? 200 : 404,
+          message,
+          channels: result,
         }
-      }
 
-      return { status: 404, message: "Post not found" }
+      default:
+        return { status: 400, message: "No results found" }
     }
   } catch (error: any) {
-    return {
-      status: 400,
-      message: error.message || "Failed to search groups",
-    }
+    return { status: 400, message: error.message || "Failed to search" }
   }
 }
 
@@ -373,6 +377,83 @@ export const onUpdateGroupSettings = async (
     return {
       status: 400,
       message: error.message || "Failed to update group settings",
+    }
+  }
+}
+
+export const onGetExploreGroup = async (category: string, paginate: number) => {
+  if (!category) {
+    return {
+      status: 400,
+      message: "Category is required",
+    }
+  }
+
+  try {
+    const groups = await prisma.group.findMany({
+      where: { category, NOT: { description: null, thumbnail: null } },
+      take: 6,
+      skip: paginate,
+    })
+
+    if (groups && groups.length > 0) {
+      return { status: 200, message: "Groups found", groups }
+    }
+
+    return { status: 404, message: "Groups not found" }
+  } catch (error: any) {
+    return {
+      status: 400,
+      message: error.message || "Failed to get explore group",
+    }
+  }
+}
+
+export const onGetPaginatedPosts = async (
+  identifier: string,
+  paginate: number,
+) => {
+  const user = await onAuthenticatedUser()
+
+  try {
+    const posts = await prisma.post.findMany({
+      where: { channelId: identifier },
+      skip: paginate,
+      take: 2,
+      orderBy: { createdAt: "desc" },
+      include: {
+        channel: {
+          select: { name: true },
+        },
+        author: {
+          select: {
+            firstname: true,
+            lastname: true,
+            image: true,
+          },
+        },
+        _count: {
+          select: {
+            likes: true,
+            comments: true,
+          },
+        },
+        likes: {
+          where: { userId: user.id! },
+          select: { userId: true, id: true },
+        },
+      },
+    })
+
+    if (posts && posts.length > 0) {
+      return { status: 200, message: "Posts found", posts }
+    }
+
+    return { status: 404, message: "Posts not found" }
+  } catch (error: any) {
+    return {
+      status: 400,
+      message: error.message || "Failed to get posts",
     }
   }
 }

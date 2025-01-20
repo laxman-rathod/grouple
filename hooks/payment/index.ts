@@ -18,7 +18,7 @@ import { z } from "zod"
 
 export const UseStripeElements = () => {
   const StripePromise = async () =>
-    await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
+    await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY as string)
   return { StripePromise }
 }
 
