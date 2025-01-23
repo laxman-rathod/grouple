@@ -1,3 +1,5 @@
+"use client"
+
 import { UseFormRegister } from "react-hook-form"
 import { SwiperProps, SwiperSlide } from "swiper/react"
 import Slider from "../slider"

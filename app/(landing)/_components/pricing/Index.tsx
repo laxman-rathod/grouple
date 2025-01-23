@@ -1,5 +1,5 @@
-import BackdropGradient from "@/components/global/backdrop-gradient/Index"
-import GradientText from "@/components/global/gradient-text/Index"
+import BackdropGradient from "@/components/global/backdrop-gradient"
+import GradientText from "@/components/global/gradient-text"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardTitle } from "@/components/ui/card"
 import { Check } from "@/icons"

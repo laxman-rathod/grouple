@@ -1,10 +1,10 @@
 import dynamic from "next/dynamic"
-import CallToAction from "./_components/call-to-action/Index"
-import DashboardSnippet from "./_components/dashboar-snippet/Index"
+import CallToAction from "./_components/call-to-action"
+import DashboardSnippet from "./_components/dashboar-snippet"
 
 const PricingSection = dynamic(
   () =>
-    import("./_components/pricing/Index").then(
+    import("./_components/pricing").then(
       (component) => component.PricingSection,
     ),
   { ssr: true },

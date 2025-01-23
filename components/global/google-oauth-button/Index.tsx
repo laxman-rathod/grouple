@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Loader } from "../loader/Index"
+import { Loader } from "../loader"
 import { Google } from "@/icons"
 import { useGoogleAuth } from "@/hooks/auth"
 

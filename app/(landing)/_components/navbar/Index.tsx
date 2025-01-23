@@ -3,7 +3,7 @@ import Menu from "./Menu"
 import { Button } from "@/components/ui/button"
 import { Logout } from "@/icons"
 import { MenuIcon } from "lucide-react"
-import GlassSheet from "@/components/global/glass-sheet/Index"
+import GlassSheet from "@/components/global/glass-sheet"
 
 const LandingPageNavbar = () => {
   return (

@@ -1,4 +1,4 @@
-import GradientText from "@/components/global/gradient-text/Index"
+import GradientText from "@/components/global/gradient-text"
 import { Button } from "@/components/ui/button"
 import { BadgePlus } from "@/icons"
 import Link from "next/link"

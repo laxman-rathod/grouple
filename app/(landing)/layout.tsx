@@ -1,4 +1,4 @@
-import LandingPageNavbar from "./_components/navbar/Index"
+import LandingPageNavbar from "./_components/navbar"
 
 interface Props {
   children: React.ReactNode

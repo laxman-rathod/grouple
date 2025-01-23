@@ -1,12 +1,11 @@
 import type { Metadata } from "next"
 import { Plus_Jakarta_Sans } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
-// import { ReduxProvider } from "@/redux/provider"
+import { ReduxProvider } from "@/redux/provider"
 import { ReactQueryProvider } from "@/react-query/provider"
-// import { ReduxProvider } from "@/redux/provider"
-import { ThemeProvider } from "@/components/theme/Index"
 import { Toaster } from "sonner"
 import "./globals.css"
+import { ThemeProvider } from "@/components/theme"
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
@@ -30,9 +29,9 @@ export default function RootLayout({
             defaultTheme="dark"
             disableTransitionOnChange
           >
-            {/* <ReduxProvider> */}
-            <ReactQueryProvider>{children}</ReactQueryProvider>
-            {/* </ReduxProvider> */}
+            <ReduxProvider>
+              <ReactQueryProvider>{children}</ReactQueryProvider>
+            </ReduxProvider>
             <Toaster />
           </ThemeProvider>
         </body>
