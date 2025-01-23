@@ -12,7 +12,7 @@ interface DropDownProps {
   title: string
   trigger: JSX.Element
   children: React.ReactNode
-  ref?: React.RefObject<HTMLButtonElement>
+  ref?: React.RefObject<HTMLButtonElement | null>
 }
 
 export const DropDown = ({ title, trigger, children, ref }: DropDownProps) => {

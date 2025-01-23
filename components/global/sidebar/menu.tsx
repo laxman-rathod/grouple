@@ -101,7 +101,7 @@ const SideBarMenu = ({
                       <IconDropDown
                         ref={triggerRef}
                         page={currentPage}
-                        onSelect={onSetIcon}
+                        onSetIcon={onSetIcon}
                         channelId={channel.id}
                         icon={channel.icon}
                         currentIcon={icon}
