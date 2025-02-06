@@ -9,7 +9,9 @@ interface Props {
 
 const AuthLayout = async ({ children }: Props) => {
   const user = await onAuthenticatedUser()
-  if (user.status === 200) redirect("/callback/sign-in")
+  if (user && user.status === 200) {
+    return redirect("/callback/sign-in")
+  }
 
   return (
     <div className="container h-screen flex justify-center items-center">

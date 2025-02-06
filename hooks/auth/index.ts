@@ -129,7 +129,7 @@ export const useAuthSignUp = () => {
       })
 
       if (completeSignUp.status !== "complete") {
-        // setCreating(false) FIX: this is not working
+        setCreating(false)
         return toast("Error", {
           description: "Oops! something went wrong, status in complete",
         })
@@ -156,7 +156,7 @@ export const useAuthSignUp = () => {
 
         if (user.status !== 200) {
           toast("Error", { description: user.message + "action failed" })
-          router.refresh
+          router.refresh()
         }
 
         setCreating(false)

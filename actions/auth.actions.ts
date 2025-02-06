@@ -19,11 +19,11 @@ export const onAuthenticatedUser = async () => {
       },
     })
 
-    if (user)
+    if (user && user.id)
       return {
         status: 200,
         id: user.id,
-        image: clerk.imageUrl,
+        image: clerk?.imageUrl,
         username: `${user.firstname} ${user.lastname}`,
       }
 
@@ -42,13 +42,13 @@ export const onAuthenticatedUser = async () => {
 export const onSignUpUser = async (data: {
   firstname: string
   lastname: string
+  image?: string
   clerkId: string
-  image: string
 }) => {
   try {
     const createdUser = await prisma.user.create({ data: { ...data } })
 
-    if (createdUser)
+    if (createdUser && createdUser.id)
       return {
         status: 200,
         message: "User successfully created",
@@ -60,7 +60,7 @@ export const onSignUpUser = async (data: {
     }
   } catch (error: any) {
     return {
-      status: 400,
+      status: 500,
       message: error.message || "Oops! Something went wrong. Try again",
     }
   }
@@ -89,7 +89,7 @@ export const onSignInUser = async (clerkId: string) => {
       },
     })
 
-    if (loggedInUser) {
+    if (loggedInUser && loggedInUser.id) {
       if (loggedInUser.group.length > 0) {
         return {
           status: 207,
@@ -112,7 +112,7 @@ export const onSignInUser = async (clerkId: string) => {
     }
   } catch (error: any) {
     return {
-      status: 400,
+      status: 500,
       message: error.message || "Oops! Something went wrong. Try again",
     }
   }

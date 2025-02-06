@@ -48,6 +48,9 @@ const SignUpForm = () => {
         ))
       )}
 
+      {/* CAPTCHA Widget */}
+      <div id="clerk-captcha" />
+
       {verifying ? (
         <Button type="submit" className="rounded-2xl" disabled={creating}>
           <Loader loading={creating}>Sign Up with Email</Loader>
