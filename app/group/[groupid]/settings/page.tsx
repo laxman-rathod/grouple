@@ -1,6 +1,12 @@
 import GroupSettingsForm from "@/components/forms/group-settings"
 
-const GroupSettingsPage = ({ params }: { params: { groupid: string } }) => {
+type Params = Promise<{
+  groupid: string
+}>
+
+const GroupSettingsPage = async ({ params }: { params: Params }) => {
+  const { groupid } = await params
+
   return (
     <div className="flex flex-col w-full h-full gap-10 px-16 overflow-auto">
       <div className="flex flex-col">
@@ -10,7 +16,7 @@ const GroupSettingsPage = ({ params }: { params: { groupid: string } }) => {
           reflect on the explore page.
         </p>
       </div>
-      <GroupSettingsForm groupId={params.groupid} />
+      <GroupSettingsForm groupId={groupid} />
     </div>
   )
 }

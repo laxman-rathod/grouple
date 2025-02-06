@@ -9,11 +9,11 @@ type CreateGroupLayoutProps = {
 
 const CreateGroupLayout = ({ children }: CreateGroupLayoutProps) => {
   return (
-    <div className="container h-screen grid grid-cols-1 content-center">
+    <div className="container h-screen grid grid-cols-1 lg:grid-cols-2 content-center">
       <div className="flex items-center">
         <BackdropGradient className="w-8/12 h-2/6 opacity-50">
           <h5 className="text-2xl font-bold text-themeTextWhite">Grouple.</h5>
-          <GradientText className="text-4xl font-semibold py-1" element="H2">
+          <GradientText element="H2" className="text-4xl font-semibold py-1">
             Create Your Group
           </GradientText>
           <p className="text-themeTextGray">

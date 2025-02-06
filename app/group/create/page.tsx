@@ -14,9 +14,7 @@ const GroupCreatePage = async ({ params }: { params: Props }) => {
   const user = await onAuthenticatedUser()
   const affiliate = await onGetAffiliateInfo(searchParams?.affiliate)
 
-  if (!user || !user.id) {
-    redirect("/sign-in")
-  }
+  if (!user || !user.id) return redirect("/sign-in")
 
   return (
     <>
